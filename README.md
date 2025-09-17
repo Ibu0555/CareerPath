@@ -17,8 +17,7 @@ It allows users to **upload resumes**, extract skills, analyze gaps, and explore
 
 ---
 
-## 🖼️ Demo Preview
-![CareerPath Screenshot](https://via.placeholder.com/1000x500.png?text=CareerPath+Preview)
+
 
 ---
 
@@ -38,4 +37,4 @@ It allows users to **upload resumes**, extract skills, analyze gaps, and explore
 
 ---
 
-## 📂 Project Structure
+
