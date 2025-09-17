@@ -39,11 +39,6 @@
 
 ---
 
-## 📸 Demo Preview
-<p align="center">
-  <img src="https://via.placeholder.com/1000x500.png?text=CareerPath+Live+Demo" alt="CareerPath Demo Preview"/>
-</p>
-
 ---
 
 ## 🛠️ Tech Stack
@@ -62,4 +57,10 @@
 
 ---
 
-## 📂 Project Structure
+👨‍💻 Author
+
+Mohamed Ibrahim A
+🎓 B.Tech IT (Graduating 2027)
+💡 Exploring AI, Quantum Computing, and CareerTech
+🔗 LinkedIn
+ | GitHub
