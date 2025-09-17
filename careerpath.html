@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPath - Ultimate Career Advisor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #ffd166;
+            --danger: #ef476f;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        .logo i {
+            margin-right: 10px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234361ee" opacity="0.1"/><path d="M0 0L100 100" stroke="%234361ee" stroke-width="1" opacity="0.2"/></svg>');
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            color: var(--dark);
+            font-size: 2.2rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--gray);
+        }
+        .upload-area {
+            border: 2px dashed var(--light-gray);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .skill-pill {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .skill-pill i {
+            margin-right: 5px;
+        }
+        .career-path {
+            display: flex;
+            margin: 2rem 0;
+            position: relative;
+        }
+        .path-node {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        .path-connector {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--light-gray);
+            z-index: 1;
+        }
+        .path-node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        .path-node:first-child::before {
+            display: none;
+        }
+        .gap-list {
+            margin: 1.5rem 0;
+        }
+        .gap-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+        .job-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .job-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+        .job-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        .job-body {
+            padding: 1.5rem;
+        }
+        .job-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .job-company {
+            font-weight: 500;
+            color: var(--gray);
+        }
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .job-tag {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        .progress-container {
+            margin: 2rem 0;
+        }
+        .progress-bar {
+            height: 10px;
+            background: var(--light-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+        .feedback-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .feedback-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        .feedback-btn.like {
+            background: var(--success);
+            color: white;
+        }
+        .feedback-btn.dislike {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+        .feedback-btn:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .career-path {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .path-connector {
+                display: none;
+            }
+            .path-node::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-road"></i>
+                    <span>CareerPath</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#upload" class="btn btn-outline">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Discover Your Ideal Career Path</h1>
+            <p>AI-powered career guidance that maps your skills, identifies gaps, and recommends the best opportunities for your growth</p>
+            <a href="#upload" class="btn btn-primary">Start Your Journey</a>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title" id="features">Your Personalized Career Dashboard</h2>
+        <p class="section-subtitle">Upload your resume to unlock personalized career insights</p>
+
+        <div class="card" id="upload">
+            <div class="card-header">
+                <h3 class="card-title">Step 1: Upload Your Resume</h3>
+                <i class="fas fa-file-upload fa-2x" style="color: var(--primary);"></i>
+            </div>
+            <p>We'll analyze your resume to extract your skills, experience, and interests</p>
+            
+            <div class="upload-area" onclick="handleUpload()">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Click to upload your resume</h3>
+                <p>Supported formats: PDF, DOCX, or connect with LinkedIn</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <p>Or</p>
+                <a href="#" class="btn btn-primary">
+                    <i class="fab fa-linkedin"></i> Connect with LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <div class="card" id="skill-map" style="display: none;">
+            <div class="card-header">
+                <h3 class="card-title">Your Skill Profile</h3>
+                <i class="fas fa-map-marked-alt fa-2x" style="color: var(--primary);"></i>
+            </div>
+            <p>Based on your resume, we've identified your core competencies:</p>
+            
+            <div class="skills-container">
+                <div class="skill-pill"><i class="fas fa-code"></i> JavaScript</div>
+                <div class="skill-pill"><i class="fas fa-code"></i> React</div>
+                <div class="skill-pill"><i class="fas fa-code"></i> Node.js</div>
+                <div class="skill-pill"><i class="fas fa-code"></i> HTML/CSS</div>
+                <div class="skill-pill"><i class="fas fa-chart-bar"></i> Data Analysis</div>
+                <div class="skill-pill"><i class="fas fa-users"></i> Team Leadership</div>
+                <div class="skill-pill"><i class="fas fa-comments"></i> Communication</div>
+                <div class="skill-pill"><i class="fas fa-tasks"></i> Project Management</div>
+            </div>
+            
+            <div class="progress-container">
+                <h4>Profile Completeness</h4>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+                <p>Your profile is 75% complete. Add more skills to get better recommendations.</p>
+            </div>
+        </div>
+
+        <div class="card" id="career-paths" style="display: none;">
+            <div class="card-header">
+                <h3 class="card-title">Recommended Career Paths</h3>
+                <i class="fas fa-road fa-2x" style="color: var(--primary);"></i>
+            </div>
+            <p>Based on your skills and experience, here are your top career options:</p>
+            
+            <div class="career-path">
+                <div class="path-connector"></div>
+                <div class="path-node">
+                    <h4>Frontend Developer</h4>
+                    <p>Current role match: 85%</p>
+                </div>
+                <div class="path-node">
+                    <h4>Senior React Developer</h4>
+                    <p>+12-18 months</p>
+                </div>
+                <div class="path-node">
+                    <h4>Frontend Architect</h4>
+                    <p>+3-4 years</p>
+                </div>
+            </div>
+            
+            <div class="career-path">
+                <div class="path-connector"></div>
+                <div class="path-node">
+                    <h4>Technical Project Manager</h4>
+                    <p>Current role match: 70%</p>
+                </div>
+                <div class="path-node">
+                    <h4>Product Manager</h4>
+                    <p>+18-24 months</p>
+                </div>
+                <div class="path-node">
+                    <h4>Director of Product</h4>
+                    <p>+5-6 years</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="skill-gaps" style="display: none;">
+            <div class="card-header">
+                <h3 class="card-title">Skill Gap Analysis</h3>
+                <i class="fas fa-chart-line fa-2x" style="color: var(--primary);"></i>
+            </div>
+            <p>To progress on your chosen career path, we recommend developing these skills:</p>
+            
+            <div class="gap-list">
+                <div class="gap-item">
+                    <div>
+                        <h4>UI/UX Design Principles</h4>
+                        <p>Important for Frontend Architect role</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">Learn</a>
+                </div>
+                
+                <div class="gap-item">
+                    <div>
+                        <h4>Advanced React Patterns</h4>
+                        <p>Required for Senior React Developer role</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">Learn</a>
+                </div>
+                
+                <div class="gap-item">
+                    <div>
+                        <h4>Cloud Infrastructure (AWS)</h4>
+                        <p>Needed for architect-level positions</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">Learn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="job-matches" style="display: none;">
+            <div class="card-header">
+                <h3 class="card-title">Job Opportunities For You</h3>
+                <i class="fas fa-briefcase fa-2x" style="color: var(--primary);"></i>
+            </div>
+            <p>Based on your profile, here are some relevant opportunities:</p>
+            
+            <div class="job-list">
+                <div class="job-card">
+                    <div class="job-header">
+                        <h3 class="job-title">Frontend Developer</h3>
+                        <p class="job-company">TechCorp Inc.</p>
+                    </div>
+                    <div class="job-body">
+                        <div class="job-tags">
+                            <span class="job-tag">React</span>
+                            <span class="job-tag">JavaScript</span>
+                            <span class="job-tag">Remote</span>
+                        </div>
+                        <p>We're looking for a talented frontend developer to join our growing team...</p>
+                        <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Apply Now</a>
+                    </div>
+                </div>
+                
+                <div class="job-card">
+                    <div class="job-header">
+                        <h3 class="job-title">React.js Developer</h3>
+                        <p class="job-company">StartUp Ventures</p>
+                    </div>
+                    <div class="job-body">
+                        <div class="job-tags">
+                            <span class="job-tag">React</span>
+                            <span class="job-tag">TypeScript</span>
+                            <span class="job-tag">Flexible</span>
+                        </div>
+                        <p>Join our innovative team to build cutting-edge web applications...</p>
+                        <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Apply Now</a>
+                    </div>
+                </div>
+                
+                <div class="job-card">
+                    <div class="job-header">
+                        <h3 class="job-title">UI Developer</h3>
+                        <p class="job-company">DesignHub</p>
+                    </div>
+                    <div class="job-body">
+                        <div class="job-tags">
+                            <span class="job-tag">HTML/CSS</span>
+                            <span class="job-tag">JavaScript</span>
+                            <span class="job-tag">UX</span>
+                        </div>
+                        <p>We need a UI developer with an eye for design and passion for code...</p>
+                        <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="feedback" style="display: none;">
+            <div class="card-header">
+                <h3 class="card-title">How helpful are these recommendations?</h3>
+                <i class="fas fa-comments fa-2x" style="color: var(--primary);"></i>
+            </div>
+            <p>Your feedback helps us improve our suggestions for you and others</p>
+            
+            <div class="feedback-buttons">
+                <button class="feedback-btn like">
+                    <i class="fas fa-thumbs-up"></i> Helpful
+                </button>
+                <button class="feedback-btn dislike">
+                    <i class="fas fa-thumbs-down"></i> Not Helpful
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-heading">CareerPath</h3>
+                    <p>AI-powered career guidance to help you navigate your professional journey and unlock new opportunities.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-heading">Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Data Protection</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-heading">Connect With Us</h3>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 CareerPath. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulate resume upload and analysis
+        function handleUpload() {
+            // Show loading state (in a real app, you'd have proper loading indicators)
+            document.querySelector('.upload-area').innerHTML = `
+                <div class="upload-icon">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <h3>Analyzing your resume...</h3>
+                <p>This may take a few moments</p>
+            `;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                // Show all the sections that were hidden
+                document.getElementById('skill-map').style.display = 'block';
+                document.getElementById('career-paths').style.display = 'block';
+                document.getElementById('skill-gaps').style.display = 'block';
+                document.getElementById('job-matches').style.display = 'block';
+                document.getElementById('feedback').style.display = 'block';
+                
+                // Update upload area to show success
+                document.querySelector('.upload-area').innerHTML = `
+                    <div class="upload-icon" style="color: var(--success);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Analysis Complete!</h3>
+                    <p>We've found 12 skills and 3 career paths for you</p>
+                `;
+                
+                // Scroll to results
+                document.getElementById('skill-map').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        }
+        
+        // Add animation to progress bar
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                // Trigger animation after a short delay
+                setTimeout(() => {
+                    progressFill.style.width = '75%';
+                }, 500);
+            }
+            
+            // Add feedback button handlers
+            const feedbackButtons = document.querySelectorAll('.feedback-btn');
+            feedbackButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Thanks for your feedback! We\'ll use it to improve your recommendations.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
