@@ -184,13 +184,10 @@
 **Mohamed Ibrahim A**  
 🎓 B.Tech IT (Graduating 2027)  
 💡 Exploring AI, Quantum Computing, and CareerTech  
-🔗 [LinkedIn](https://linkedin.com/in/mohamed-ibrahim) | [GitHub](https://github.com/mohamed-ibrahim)
+
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
