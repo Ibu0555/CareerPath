@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSphere - Your AI Career & Skills Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-sphere">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <span>SkillSphere</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-outline">Sign In</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-sphere">
+                        <div class="sphere-container">
+                            <div class="central-sphere"></div>
+                            <div class="skill-orbit orbit-1">
+                                <div class="skill-node">JS</div>
+                            </div>
+                            <div class="skill-orbit orbit-2">
+                                <div class="skill-node">AI</div>
+                            </div>
+                            <div class="skill-orbit orbit-3">
+                                <div class="skill-node">UX</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1>Map your skills. Bridge the gaps. <span class="gradient-text">Unlock your future.</span></h1>
+                    <p>Your AI-powered career companion that transforms confusion into clarity with personalized skill mapping, gap analysis, and career roadmaps.</p>
+                    <div class="hero-actions">
+                        <a href="#upload" class="btn btn-primary btn-large">
+                            <i class="fas fa-upload"></i>
+                            Upload Resume
+                        </a>
+                        <a href="#demo" class="btn btn-outline btn-large">
+                            <i class="fas fa-play"></i>
+                            Watch Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="upload-section" id="upload">
+            <div class="container">
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-brain"></i>
+                            AI Resume Analysis
+                        </h2>
+                        <div class="status-indicator" id="analysisStatus">
+                            <span class="status-text">Ready to analyze</span>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3>Drop your resume here</h3>
+                            <p>Supports PDF, DOCX, or paste LinkedIn profile URL</p>
+                            <div class="upload-formats">
+                                <span class="format-tag"><i class="fas fa-file-pdf"></i> PDF</span>
+                                <span class="format-tag"><i class="fas fa-file-word"></i> DOCX</span>
+                                <span class="format-tag"><i class="fab fa-linkedin"></i> LinkedIn</span>
+                            </div>
+                            <input type="file" id="resumeFile" accept=".pdf,.docx" hidden>
+                            <button class="btn btn-primary" onclick="document.getElementById('resumeFile').click()">
+                                Choose File
+                            </button>
+                        </div>
+                        
+                        <div class="upload-progress" id="uploadProgress" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="progress-steps">
+                                <div class="step active">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Uploading</span>
+                                </div>
+                                <div class="step">
+                                    <i class="fas fa-search"></i>
+                                    <span>Analyzing</span>
+                                </div>
+                                <div class="step">
+                                    <i class="fas fa-magic"></i>
+                                    <span>Generating Insights</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section" id="results" style="display: none;">
+            <div class="container">
+                <!-- Skill Map -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-map"></i>
+                            Your Skill Universe
+                        </h2>
+                        <div class="skill-score">
+                            <span class="score-label">Overall Score</span>
+                            <span class="score-value">85/100</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-map">
+                        <div class="skill-categories">
+                            <div class="skill-category">
+                                <h3>Technical Skills</h3>
+                                <div class="skills-container" id="technicalSkills">
+                                    <!-- Skills will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Soft Skills</h3>
+                                <div class="skills-container" id="softSkills">
+                                    <!-- Skills will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Career Path Timeline -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-route"></i>
+                            Your Career Trajectory
+                        </h2>
+                    </div>
+                    
+                    <div class="career-timeline">
+                        <div class="timeline-item current">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Current Position</h3>
+                                <p>Frontend Developer</p>
+                                <span class="timeline-date">Now</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item next">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Next Step</h3>
+                                <p>Senior Frontend Developer</p>
+                                <span class="timeline-date">6-12 months</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item future">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Future Goal</h3>
+                                <p>Full Stack Architect</p>
+                                <span class="timeline-date">2-3 years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Gap Analysis -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Bridge Your Gaps
+                        </h2>
+                    </div>
+                    
+                    <div class="gap-analysis">
+                        <div class="gap-item">
+                            <div class="gap-info">
+                                <h4>React Advanced Patterns</h4>
+                                <p>Essential for senior frontend roles</p>
+                            </div>
+                            <div class="gap-actions">
+                                <span class="priority high">High Priority</span>
+                                <a href="#" class="btn btn-small btn-primary">Learn Now</a>
+                            </div>
+                        </div>
+                        <div class="gap-item">
+                            <div class="gap-info">
+                                <h4>System Design</h4>
+                                <p>Critical for architecture positions</p>
+                            </div>
+                            <div class="gap-actions">
+                                <span class="priority medium">Medium Priority</span>
+                                <a href="#" class="btn btn-small btn-outline">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Recommendations -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-briefcase"></i>
+                            Perfect Matches
+                        </h2>
+                        <div class="match-filter">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="remote">Remote</button>
+                            <button class="filter-btn" data-filter="local">Local</button>
+                        </div>
+                    </div>
+                    
+                    <div class="job-grid" id="jobRecommendations">
+                        <!-- Jobs will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Feedback Section -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-heart"></i>
+                            Help Us Improve
+                        </h2>
+                    </div>
+                    
+                    <div class="feedback-section">
+                        <p>How accurate were these recommendations?</p>
+                        <div class="feedback-actions">
+                            <button class="feedback-btn" data-feedback="excellent">
+                                <i class="fas fa-star"></i>
+                                Excellent
+                            </button>
+                            <button class="feedback-btn" data-feedback="good">
+                                <i class="fas fa-thumbs-up"></i>
+                                Good
+                            </button>
+                            <button class="feedback-btn" data-feedback="okay">
+                                <i class="fas fa-meh"></i>
+                                Okay
+                            </button>
+                            <button class="feedback-btn" data-feedback="poor">
+                                <i class="fas fa-thumbs-down"></i>
+                                Needs Work
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-sphere">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <span>SkillSphere</span>
+                    </div>
+                    <p>Your AI Career & Skills Companion</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Product</h4>
+                        <a href="#">Features</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">API</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <a href="#">Blog</a>
+                        <a href="#">Help Center</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SkillSphere. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
