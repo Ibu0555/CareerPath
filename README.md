@@ -185,9 +185,14 @@
 🎓 B.Tech IT (Graduating 2027)  
 💡 Exploring AI, Quantum Computing, and CareerTech  
 
-
 ---
 
+## 📞 Contact
+
+**Developer:** Mohamed Ibrahim N  
+📧 **Email:** [2005mohamedibrahim@gmail.com](mailto:2005mohamedibrahim@gmail.com)  
+🐙 **GitHub:** [https://github.com/MdIbuA](https://github.com/MdIbuA)  
+💼 **LinkedIn:** [https://www.linkedin.com/in/mohamedibrahimbinabdullah](https://www.linkedin.com/in/mohamedibrahimbinabdullah)  
 
 ---
 
