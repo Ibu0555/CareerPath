@@ -414,6 +414,19 @@ class SkillSphere {
 // Initialize SkillSphere when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new SkillSphere();
+    
+    // Register service worker for PWA functionality
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch((registrationError) => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        });
+    }
 });
 
 // Add smooth scrolling for navigation links
