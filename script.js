@@ -14,6 +14,13 @@ class SkillSphere {
         this.resultsSection = document.getElementById('results');
         this.resumeFile = document.getElementById('resumeFile');
         
+        // Sign-in modal elements
+        this.signInModal = document.getElementById('signInModal');
+        this.signInBtn = document.getElementById('signInBtn');
+        this.closeModal = document.getElementById('closeModal');
+        this.signInForm = document.getElementById('signInForm');
+        this.passwordToggle = document.getElementById('passwordToggle');
+        
         // Sample data for demo
         this.sampleSkills = {
             technical: [
@@ -81,6 +88,17 @@ class SkillSphere {
         this.uploadArea.addEventListener('drop', (e) => this.handleDrop(e));
         this.uploadArea.addEventListener('click', () => this.resumeFile.click());
 
+        // Sign-in modal events
+        this.signInBtn.addEventListener('click', (e) => this.openSignInModal(e));
+        this.closeModal.addEventListener('click', () => this.closeSignInModal());
+        this.signInModal.addEventListener('click', (e) => this.handleModalBackdropClick(e));
+        this.signInForm.addEventListener('submit', (e) => this.handleSignInSubmit(e));
+        this.passwordToggle.addEventListener('click', () => this.togglePassword());
+
+        // Input validation events
+        document.getElementById('email').addEventListener('input', (e) => this.validateEmail(e.target));
+        document.getElementById('password').addEventListener('input', (e) => this.validatePassword(e.target));
+
         // Feedback buttons
         document.querySelectorAll('.feedback-btn').forEach(btn => {
             btn.addEventListener('click', (e) => this.handleFeedback(e));
@@ -95,6 +113,13 @@ class SkillSphere {
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('skill-pill')) {
                 this.handleSkillClick(e.target);
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.signInModal.classList.contains('active')) {
+                this.closeSignInModal();
             }
         });
     }
@@ -392,6 +417,150 @@ class SkillSphere {
         setTimeout(() => {
             tooltip.remove();
         }, 3000);
+    }
+
+    // Sign-in modal methods
+    openSignInModal(e) {
+        e.preventDefault();
+        this.signInModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus on email input after animation
+        setTimeout(() => {
+            document.getElementById('email').focus();
+        }, 300);
+    }
+
+    closeSignInModal() {
+        this.signInModal.classList.remove('active');
+        document.body.style.overflow = '';
+        this.clearValidationErrors();
+    }
+
+    handleModalBackdropClick(e) {
+        if (e.target === this.signInModal) {
+            this.closeSignInModal();
+        }
+    }
+
+    togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = this.passwordToggle.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.className = 'fas fa-eye-slash';
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.className = 'fas fa-eye';
+        }
+    }
+
+    validateEmail(input) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const wrapper = input.closest('.input-wrapper');
+        const errorElement = document.getElementById('emailError');
+        
+        if (!input.value.trim()) {
+            this.showInputError(wrapper, errorElement, 'Email is required');
+            return false;
+        } else if (!emailRegex.test(input.value)) {
+            this.showInputError(wrapper, errorElement, 'Please enter a valid email address');
+            return false;
+        } else {
+            this.showInputSuccess(wrapper, errorElement);
+            return true;
+        }
+    }
+
+    validatePassword(input) {
+        const wrapper = input.closest('.input-wrapper');
+        const errorElement = document.getElementById('passwordError');
+        
+        if (!input.value.trim()) {
+            this.showInputError(wrapper, errorElement, 'Password is required');
+            return false;
+        } else if (input.value.length < 6) {
+            this.showInputError(wrapper, errorElement, 'Password must be at least 6 characters');
+            return false;
+        } else {
+            this.showInputSuccess(wrapper, errorElement);
+            return true;
+        }
+    }
+
+    showInputError(wrapper, errorElement, message) {
+        wrapper.classList.remove('success');
+        wrapper.classList.add('error');
+        errorElement.textContent = message;
+        errorElement.classList.add('show');
+    }
+
+    showInputSuccess(wrapper, errorElement) {
+        wrapper.classList.remove('error');
+        wrapper.classList.add('success');
+        errorElement.textContent = '';
+        errorElement.classList.remove('show');
+    }
+
+    clearValidationErrors() {
+        document.querySelectorAll('.input-wrapper').forEach(wrapper => {
+            wrapper.classList.remove('error', 'success');
+        });
+        document.querySelectorAll('.error-message').forEach(error => {
+            error.textContent = '';
+            error.classList.remove('show');
+        });
+    }
+
+    handleSignInSubmit(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        
+        const isEmailValid = this.validateEmail(email);
+        const isPasswordValid = this.validatePassword(password);
+        
+        if (isEmailValid && isPasswordValid) {
+            this.performSignIn(email.value, password.value);
+        }
+    }
+
+    performSignIn(email, password) {
+        // Show loading state
+        const submitBtn = document.querySelector('.auth-submit');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+        submitBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+            // For demo purposes, show success message
+            this.showSignInSuccess(email);
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 2000);
+    }
+
+    showSignInSuccess(email) {
+        const modalBody = document.querySelector('.modal-body');
+        modalBody.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-check" style="font-size: 2rem; color: white;"></i>
+                </div>
+                <h3 style="color: white; margin-bottom: 1rem;">Welcome back!</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">
+                    Successfully signed in as <strong>${email}</strong>
+                </p>
+                <button class="btn btn-primary" onclick="document.getElementById('signInModal').classList.remove('active'); document.body.style.overflow = '';">
+                    Continue to SkillSphere
+                </button>
+            </div>
+        `;
     }
 
     animateSkillPills() {
