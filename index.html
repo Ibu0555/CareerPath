@@ -43,12 +43,23 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#" id="aboutLink">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="#" class="btn btn-outline">Sign In</a>
-                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="#" class="btn btn-outline" id="signInBtn">Sign In</a>
+                <a href="#" class="btn btn-primary" id="getStartedBtn">Get Started</a>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="#" id="profileBtn"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" id="historyBtn"><i class="fas fa-history"></i> History</a>
+                        <a href="#" id="signOutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -298,6 +309,537 @@
             </div>
         </section>
     </main>
+
+    <!-- Authentication Modals -->
+    <div class="modal-overlay" id="authModalOverlay">
+        <!-- Sign In Modal -->
+        <div class="modal" id="signInModal">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <button class="modal-close" id="closeSignIn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="signInForm">
+                    <div class="form-group">
+                        <label for="signInEmail">Email</label>
+                        <input type="email" id="signInEmail" required>
+                        <span class="error-message" id="signInEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signInPassword">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="signInPassword" required>
+                            <button type="button" class="password-toggle" id="toggleSignInPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="signInPasswordError"></span>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" id="forgotPasswordLink">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="signInSubmit">
+                        <span class="btn-text">Sign In</span>
+                        <div class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                <div class="social-auth">
+                    <button class="btn btn-outline btn-full social-btn" id="googleSignIn">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </button>
+                    <button class="btn btn-outline btn-full social-btn" id="linkedinSignIn">
+                        <i class="fab fa-linkedin"></i>
+                        Continue with LinkedIn
+                    </button>
+                </div>
+                <p class="auth-switch">
+                    Don't have an account? <a href="#" id="switchToSignUp">Sign up</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Sign Up Modal -->
+        <div class="modal" id="signUpModal">
+            <div class="modal-header">
+                <h2>Join SkillSphere</h2>
+                <button class="modal-close" id="closeSignUp"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="signUpForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" required>
+                            <span class="error-message" id="firstNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" required>
+                            <span class="error-message" id="lastNameError"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpEmail">Email</label>
+                        <input type="email" id="signUpEmail" required>
+                        <span class="error-message" id="signUpEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpPassword">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="signUpPassword" required>
+                            <button type="button" class="password-toggle" id="toggleSignUpPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-meter">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Enter a password</span>
+                        </div>
+                        <span class="error-message" id="signUpPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="signUpSubmit">
+                        <span class="btn-text">Create Account</span>
+                        <div class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? <a href="#" id="switchToSignIn">Sign in</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Forgot Password Modal -->
+        <div class="modal" id="forgotPasswordModal">
+            <div class="modal-header">
+                <h2>Reset Password</h2>
+                <button class="modal-close" id="closeForgotPassword"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Enter your email address and we'll send you a link to reset your password.</p>
+                <form id="forgotPasswordForm">
+                    <div class="form-group">
+                        <label for="resetEmail">Email</label>
+                        <input type="email" id="resetEmail" required>
+                        <span class="error-message" id="resetEmailError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="resetSubmit">
+                        <span class="btn-text">Send Reset Link</span>
+                        <div class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+                <p class="auth-switch">
+                    Remember your password? <a href="#" id="backToSignIn">Sign in</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Email Verification Modal -->
+        <div class="modal" id="emailVerificationModal">
+            <div class="modal-header">
+                <h2>Verify Your Email</h2>
+                <button class="modal-close" id="closeEmailVerification"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="verification-content">
+                    <div class="verification-icon">
+                        <i class="fas fa-envelope-open"></i>
+                    </div>
+                    <p>We've sent a verification email to <strong id="verificationEmail"></strong></p>
+                    <p>Please check your inbox and click the verification link to activate your account.</p>
+                    <div class="verification-actions">
+                        <button class="btn btn-outline" id="resendVerification">Resend Email</button>
+                        <button class="btn btn-primary" id="openEmailClient">Open Email</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="modal-overlay" id="profileModalOverlay">
+        <div class="modal large-modal" id="profileModal">
+            <div class="modal-header">
+                <h2>User Profile</h2>
+                <button class="modal-close" id="closeProfile"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="skills">Skills</button>
+                    <button class="tab-btn" data-tab="experience">Experience</button>
+                    <button class="tab-btn" data-tab="export">Export Data</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="overview">
+                        <div class="profile-info">
+                            <div class="profile-avatar">
+                                <div class="avatar-circle">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <button class="btn btn-small btn-outline">Change Photo</button>
+                            </div>
+                            <div class="profile-details">
+                                <h3 id="profileName">John Doe</h3>
+                                <p id="profileEmail">john.doe@example.com</p>
+                                <p id="profileRole">Frontend Developer</p>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">24</span>
+                                        <span class="stat-label">Skills</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">3</span>
+                                        <span class="stat-label">Years Exp.</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">85%</span>
+                                        <span class="stat-label">Match Score</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="skills">
+                        <div class="skills-overview">
+                            <h4>Skill Distribution</h4>
+                            <div id="skillsChart" class="chart-container"></div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="experience">
+                        <div class="experience-timeline">
+                            <h4>Experience Timeline</h4>
+                            <div id="experienceTimeline"></div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="export">
+                        <div class="export-options">
+                            <h4>Export Your Data</h4>
+                            <p>Download your SkillSphere data in various formats</p>
+                            <div class="export-buttons">
+                                <button class="btn btn-outline export-btn" data-format="json">
+                                    <i class="fas fa-file-code"></i>
+                                    Export as JSON
+                                </button>
+                                <button class="btn btn-outline export-btn" data-format="pdf">
+                                    <i class="fas fa-file-pdf"></i>
+                                    Export as PDF
+                                </button>
+                                <button class="btn btn-outline export-btn" data-format="csv">
+                                    <i class="fas fa-file-csv"></i>
+                                    Export as CSV
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModalOverlay">
+        <div class="modal large-modal" id="settingsModal">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" id="closeSettings"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-tabs">
+                    <button class="tab-btn active" data-tab="general">General</button>
+                    <button class="tab-btn" data-tab="notifications">Notifications</button>
+                    <button class="tab-btn" data-tab="privacy">Privacy</button>
+                    <button class="tab-btn" data-tab="account">Account</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="general">
+                        <div class="setting-group">
+                            <h4>Appearance</h4>
+                            <div class="setting-item">
+                                <label>Theme</label>
+                                <div class="theme-selector">
+                                    <button class="theme-btn active" data-theme="light">
+                                        <i class="fas fa-sun"></i>
+                                        Light
+                                    </button>
+                                    <button class="theme-btn" data-theme="dark">
+                                        <i class="fas fa-moon"></i>
+                                        Dark
+                                    </button>
+                                    <button class="theme-btn" data-theme="auto">
+                                        <i class="fas fa-adjust"></i>
+                                        Auto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-group">
+                            <h4>Language & Region</h4>
+                            <div class="setting-item">
+                                <label for="language">Language</label>
+                                <select id="language">
+                                    <option value="en">English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="notifications">
+                        <div class="setting-group">
+                            <h4>Email Notifications</h4>
+                            <div class="setting-item">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                    Email notifications
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="jobAlerts" checked>
+                                    <span class="toggle-slider"></span>
+                                    Job recommendations
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="privacy">
+                        <div class="setting-group">
+                            <h4>Data Privacy</h4>
+                            <div class="setting-item">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="dataCollection" checked>
+                                    <span class="toggle-slider"></span>
+                                    Allow data collection for recommendations
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="account">
+                        <div class="setting-group">
+                            <h4>Account Management</h4>
+                            <button class="btn btn-outline btn-danger">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity History Modal -->
+    <div class="modal-overlay" id="historyModalOverlay">
+        <div class="modal large-modal" id="historyModal">
+            <div class="modal-header">
+                <h2>Activity History</h2>
+                <button class="modal-close" id="closeHistory"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="history-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="uploads">Uploads</button>
+                    <button class="filter-btn" data-filter="jobs">Job Views</button>
+                    <button class="filter-btn" data-filter="skills">Skill Updates</button>
+                </div>
+                <div class="history-timeline" id="activityTimeline">
+                    <!-- Activity items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- About Section Modal -->
+    <div class="modal-overlay" id="aboutModalOverlay">
+        <div class="modal large-modal" id="aboutModal">
+            <div class="modal-header">
+                <h2>About SkillSphere</h2>
+                <button class="modal-close" id="closeAbout"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="about-content">
+                    <div class="about-hero">
+                        <div class="about-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>AI-Powered Career Guidance Platform</h3>
+                        <p class="about-subtitle">Transforming career confusion into clarity with personalized skill mapping, gap analysis, and career roadmaps.</p>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h4><i class="fas fa-target"></i> Purpose</h4>
+                        <p>SkillSphere is designed to bridge the gap between current skills and career aspirations through intelligent analysis and actionable insights. Our AI-powered platform helps job seekers and professionals navigate their career journey with confidence.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-users"></i> Target Audience</h4>
+                        <ul>
+                            <li>Job seekers looking for career direction</li>
+                            <li>Professionals planning career advancement</li>
+                            <li>Students exploring career options</li>
+                            <li>Career counselors and recruiters</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-cogs"></i> Core Functionalities</h4>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-brain"></i>
+                                <h5>Skill Analysis</h5>
+                                <p>AI-powered resume parsing and skill extraction</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-map"></i>
+                                <h5>Career Mapping</h5>
+                                <p>Personalized career path visualization</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-briefcase"></i>
+                                <h5>Job Matching</h5>
+                                <p>Intelligent job recommendations with match scoring</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-code"></i> Technology Stack</h4>
+                        <div class="tech-stack">
+                            <div class="tech-category">
+                                <h5>Frontend</h5>
+                                <div class="tech-badges">
+                                    <span class="tech-badge">HTML5</span>
+                                    <span class="tech-badge">CSS3</span>
+                                    <span class="tech-badge">JavaScript</span>
+                                    <span class="tech-badge">PWA</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <h5>Design</h5>
+                                <div class="tech-badges">
+                                    <span class="tech-badge">Glassmorphism</span>
+                                    <span class="tech-badge">Responsive Design</span>
+                                    <span class="tech-badge">CSS Animations</span>
+                                    <span class="tech-badge">Font Awesome</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <h5>Features</h5>
+                                <div class="tech-badges">
+                                    <span class="tech-badge">File Upload</span>
+                                    <span class="tech-badge">Drag & Drop</span>
+                                    <span class="tech-badge">Local Storage</span>
+                                    <span class="tech-badge">Service Worker</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-road"></i> Project Roadmap</h4>
+                        <div class="roadmap">
+                            <div class="roadmap-item completed">
+                                <div class="roadmap-marker"></div>
+                                <div class="roadmap-content">
+                                    <h5>Phase 1: Core Platform ✓</h5>
+                                    <p>Basic skill analysis and job matching</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-item current">
+                                <div class="roadmap-marker"></div>
+                                <div class="roadmap-content">
+                                    <h5>Phase 2: Enhanced UX 🚧</h5>
+                                    <p>Authentication, profiles, and advanced features</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-item future">
+                                <div class="roadmap-marker"></div>
+                                <div class="roadmap-content">
+                                    <h5>Phase 3: AI Integration 🔮</h5>
+                                    <p>Real AI processing and personalized recommendations</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-item future">
+                                <div class="roadmap-marker"></div>
+                                <div class="roadmap-content">
+                                    <h5>Phase 4: Mobile App 📱</h5>
+                                    <p>Native mobile application development</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-heart"></i> Development Credits</h4>
+                        <div class="credits">
+                            <div class="credit-item">
+                                <div class="credit-avatar">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="credit-info">
+                                    <h5>Mohamed Ibrahim N</h5>
+                                    <p>Lead Developer & Project Creator</p>
+                                    <p class="credit-role">B.Tech IT Student (Graduating 2027)</p>
+                                </div>
+                            </div>
+                            <div class="credit-item">
+                                <div class="credit-avatar">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="credit-info">
+                                    <h5>SkillSphere Team</h5>
+                                    <p>Collaborative Development</p>
+                                    <p class="credit-role">UI/UX Design, Testing & Quality Assurance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-rocket"></i> Future Enhancements</h4>
+                        <ul class="enhancement-list">
+                            <li><i class="fas fa-robot"></i> Advanced AI chat assistant for career guidance</li>
+                            <li><i class="fas fa-certificate"></i> Skill assessment quizzes with certification</li>
+                            <li><i class="fas fa-handshake"></i> Mentorship matching system</li>
+                            <li><i class="fas fa-building"></i> Company culture fit analysis</li>
+                            <li><i class="fas fa-dollar-sign"></i> Salary prediction based on skills and location</li>
+                            <li><i class="fas fa-chart-line"></i> Advanced analytics dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
