@@ -1,0 +1,24 @@
+{
+  "name": "skillsphere",
+  "version": "1.0.0",
+  "description": "SkillSphere - Your AI Career & Skills Companion",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Build completed - static files ready'",
+    "dev": "npx serve . -l 3000",
+    "preview": "npx serve ."
+  },
+  "keywords": [
+    "career",
+    "skills",
+    "ai",
+    "resume",
+    "jobs"
+  ],
+  "author": "SkillSphere Team",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
