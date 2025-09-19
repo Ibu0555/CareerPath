@@ -30,6 +30,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="about.css">
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="">
 </head>
 <body>
     <header>
@@ -47,8 +52,8 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="#" class="btn btn-outline">Sign In</a>
-                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="#" class="btn btn-outline" onclick="auth.showLoginModal(); return false;">Sign In</a>
+                <a href="#" class="btn btn-primary" onclick="auth.showRegisterModal(); return false;">Get Started</a>
             </div>
         </nav>
     </header>
@@ -297,6 +302,378 @@
                 </div>
             </div>
         </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <!-- Platform Description -->
+                <div class="about-hero">
+                    <h2 class="section-title">About SkillSphere</h2>
+                    <p class="section-subtitle">Transforming careers through AI-powered skill intelligence</p>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div class="mission-vision">
+                    <div class="card glass-card">
+                        <div class="mission-content">
+                            <div class="mission-item">
+                                <div class="mission-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="mission-text">
+                                    <h3>Our Mission</h3>
+                                    <p>To democratize career development by providing personalized, AI-driven insights that help professionals discover their potential, bridge skill gaps, and navigate their career paths with confidence.</p>
+                                </div>
+                            </div>
+                            <div class="mission-item">
+                                <div class="mission-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="mission-text">
+                                    <h3>Our Vision</h3>
+                                    <p>A world where every professional has access to intelligent career guidance, enabling them to make informed decisions and achieve their full potential in an ever-evolving job market.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Showcase -->
+                <div class="features-showcase">
+                    <h3 class="features-title">Platform Features</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>AI Resume Analysis</h4>
+                            <p>Advanced machine learning algorithms parse and analyze your resume to extract skills, experience, and potential.</p>
+                            <ul class="feature-list">
+                                <li>Intelligent skill extraction</li>
+                                <li>Experience level assessment</li>
+                                <li>Industry trend analysis</li>
+                                <li>Competency mapping</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-map"></i>
+                            </div>
+                            <h4>Interactive Skill Mapping</h4>
+                            <p>Visualize your skill universe with our innovative 3D mapping technology that shows relationships between competencies.</p>
+                            <ul class="feature-list">
+                                <li>360° skill visualization</li>
+                                <li>Skill relationship mapping</li>
+                                <li>Progress tracking</li>
+                                <li>Goal setting tools</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <h4>Career Path Planning</h4>
+                            <p>Get personalized career roadmaps with timeline estimates and milestone tracking to reach your professional goals.</p>
+                            <ul class="feature-list">
+                                <li>Personalized roadmaps</li>
+                                <li>Timeline predictions</li>
+                                <li>Milestone tracking</li>
+                                <li>Alternative paths</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Gap Analysis</h4>
+                            <p>Identify skill gaps and get prioritized recommendations for courses, certifications, and learning resources.</p>
+                            <ul class="feature-list">
+                                <li>Skill gap identification</li>
+                                <li>Learning recommendations</li>
+                                <li>Priority scoring</li>
+                                <li>Resource curation</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h4>Smart Job Matching</h4>
+                            <p>Discover opportunities that align with your skills and career aspirations through intelligent job matching algorithms.</p>
+                            <ul class="feature-list">
+                                <li>AI-powered matching</li>
+                                <li>Compatibility scoring</li>
+                                <li>Real-time updates</li>
+                                <li>Application tracking</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Learning Pathways</h4>
+                            <p>Access curated learning resources and track your progress through personalized educational journeys.</p>
+                            <ul class="feature-list">
+                                <li>Curated courses</li>
+                                <li>Progress tracking</li>
+                                <li>Certification guidance</li>
+                                <li>Skill validation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Stack -->
+                <div class="tech-stack">
+                    <h3 class="tech-title">Built with Modern Technology</h3>
+                    <div class="tech-categories">
+                        <div class="tech-category">
+                            <h4><i class="fas fa-laptop-code"></i> Frontend</h4>
+                            <div class="tech-items">
+                                <span class="tech-item">JavaScript ES6+</span>
+                                <span class="tech-item">HTML5 & CSS3</span>
+                                <span class="tech-item">Progressive Web App</span>
+                                <span class="tech-item">Responsive Design</span>
+                                <span class="tech-item">Three.js</span>
+                                <span class="tech-item">Service Workers</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4><i class="fas fa-server"></i> Backend</h4>
+                            <div class="tech-items">
+                                <span class="tech-item">Node.js</span>
+                                <span class="tech-item">Express.js</span>
+                                <span class="tech-item">GraphQL</span>
+                                <span class="tech-item">PostgreSQL</span>
+                                <span class="tech-item">Redis</span>
+                                <span class="tech-item">Docker</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4><i class="fas fa-robot"></i> AI & ML</h4>
+                            <div class="tech-items">
+                                <span class="tech-item">OpenAI GPT</span>
+                                <span class="tech-item">Python</span>
+                                <span class="tech-item">TensorFlow</span>
+                                <span class="tech-item">scikit-learn</span>
+                                <span class="tech-item">Natural Language Processing</span>
+                                <span class="tech-item">Vector Databases</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4><i class="fas fa-shield-alt"></i> Security</h4>
+                            <div class="tech-items">
+                                <span class="tech-item">JWT Authentication</span>
+                                <span class="tech-item">OAuth 2.0</span>
+                                <span class="tech-item">HTTPS/TLS</span>
+                                <span class="tech-item">Rate Limiting</span>
+                                <span class="tech-item">CSRF Protection</span>
+                                <span class="tech-item">Data Encryption</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonials -->
+                <div class="testimonials">
+                    <h3 class="testimonials-title">What Our Users Say</h3>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>"SkillSphere completely transformed how I approach my career. The AI insights helped me identify skills I didn't even know I had, and the career roadmap gave me clear direction."</p>
+                                <div class="testimonial-author">
+                                    <img src="https://via.placeholder.com/60x60/6366f1/ffffff?text=SJ" alt="Sarah Johnson">
+                                    <div class="author-info">
+                                        <h5>Sarah Johnson</h5>
+                                        <span>Software Engineer → Senior Architect</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>"The job matching feature is incredible. I found my dream job within two weeks, and the match score was 96%. It's like having a career counselor in your pocket."</p>
+                                <div class="testimonial-author">
+                                    <img src="https://via.placeholder.com/60x60/6366f1/ffffff?text=MC" alt="Michael Chen">
+                                    <div class="author-info">
+                                        <h5>Michael Chen</h5>
+                                        <span>Data Scientist → ML Engineer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>"As a career changer, I was lost. SkillSphere's gap analysis showed me exactly what to learn and in what order. Now I'm confidently transitioning into tech."</p>
+                                <div class="testimonial-author">
+                                    <img src="https://via.placeholder.com/60x60/6366f1/ffffff?text=ER" alt="Emily Rodriguez">
+                                    <div class="author-info">
+                                        <h5>Emily Rodriguez</h5>
+                                        <span>Marketing → UX Design</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Roadmap -->
+                <div class="roadmap">
+                    <h3 class="roadmap-title">Future Roadmap</h3>
+                    <div class="roadmap-timeline">
+                        <div class="roadmap-item">
+                            <div class="roadmap-marker">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="roadmap-content">
+                                <h4>Q1 2025</h4>
+                                <h5>Mobile App Launch</h5>
+                                <ul>
+                                    <li>Native iOS and Android apps</li>
+                                    <li>Offline skill assessment</li>
+                                    <li>Push notifications for opportunities</li>
+                                    <li>Augmented reality skill visualization</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-marker">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="roadmap-content">
+                                <h4>Q2 2025</h4>
+                                <h5>AI Career Coach</h5>
+                                <ul>
+                                    <li>24/7 AI-powered career assistant</li>
+                                    <li>Conversational job search</li>
+                                    <li>Personalized interview preparation</li>
+                                    <li>Real-time market insights</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-marker">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="roadmap-content">
+                                <h4>Q3 2025</h4>
+                                <h5>Mentorship Network</h5>
+                                <ul>
+                                    <li>AI-matched mentorship program</li>
+                                    <li>Industry expert connections</li>
+                                    <li>Peer learning communities</li>
+                                    <li>Virtual networking events</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-marker">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="roadmap-content">
+                                <h4>Q4 2025</h4>
+                                <h5>Skill Certification</h5>
+                                <ul>
+                                    <li>Blockchain-verified credentials</li>
+                                    <li>Industry-recognized assessments</li>
+                                    <li>Micro-credentialing system</li>
+                                    <li>Employer verification portal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Information -->
+                <div class="team-section">
+                    <h3 class="team-title">Meet the Team</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <img src="https://via.placeholder.com/120x120/6366f1/ffffff?text=MI" alt="Mohamed Ibrahim A">
+                            </div>
+                            <div class="member-info">
+                                <h4>Mohamed Ibrahim A</h4>
+                                <span class="member-role">Founder & Lead Developer</span>
+                                <p>B.Tech IT student passionate about AI, quantum computing, and career technology. Dedicated to democratizing career development through innovative solutions.</p>
+                                <div class="member-links">
+                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <img src="https://via.placeholder.com/120x120/6366f1/ffffff?text=AI" alt="AI Team">
+                            </div>
+                            <div class="member-info">
+                                <h4>AI Research Team</h4>
+                                <span class="member-role">Machine Learning Engineers</span>
+                                <p>Our dedicated AI team continuously improves the platform's intelligence, ensuring accurate skill analysis and meaningful career recommendations.</p>
+                                <div class="member-links">
+                                    <a href="#" aria-label="Research"><i class="fas fa-microscope"></i></a>
+                                    <a href="#" aria-label="Publications"><i class="fas fa-file-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contribution Guidelines -->
+                <div class="contribution-section">
+                    <div class="card glass-card">
+                        <div class="contribution-content">
+                            <div class="contribution-header">
+                                <h3><i class="fab fa-github"></i> Contribute to SkillSphere</h3>
+                                <p>Join our open-source community and help build the future of career development</p>
+                            </div>
+                            <div class="contribution-ways">
+                                <div class="contribution-way">
+                                    <i class="fas fa-code"></i>
+                                    <h4>Code Contributions</h4>
+                                    <p>Help improve our platform by contributing code, fixing bugs, or adding new features.</p>
+                                </div>
+                                <div class="contribution-way">
+                                    <i class="fas fa-bug"></i>
+                                    <h4>Bug Reports</h4>
+                                    <p>Found an issue? Report it on GitHub and help us make SkillSphere better for everyone.</p>
+                                </div>
+                                <div class="contribution-way">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <h4>Feature Ideas</h4>
+                                    <p>Share your ideas for new features or improvements to enhance the user experience.</p>
+                                </div>
+                                <div class="contribution-way">
+                                    <i class="fas fa-pen"></i>
+                                    <h4>Documentation</h4>
+                                    <p>Help improve our documentation, write tutorials, or create guides for new users.</p>
+                                </div>
+                            </div>
+                            <div class="contribution-cta">
+                                <a href="https://github.com/Ibu0555/CareerPath" class="btn btn-primary" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    View on GitHub
+                                </a>
+                                <a href="#" class="btn btn-outline">
+                                    <i class="fas fa-book"></i>
+                                    Contributing Guide
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -343,6 +720,8 @@
         </div>
     </footer>
 
+    <script src="utils.js"></script>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
